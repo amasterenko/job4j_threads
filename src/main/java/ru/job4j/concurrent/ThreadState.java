@@ -10,8 +10,13 @@ public class ThreadState {
         );
         first.start();
         second.start();
-        while (first.getState() != Thread.State.TERMINATED || second.getState() != Thread.State.TERMINATED) {
+        boolean goOn = true;
+        while (goOn) {
+            if (first.getState() == Thread.State.TERMINATED
+                    && second.getState() == Thread.State.TERMINATED) {
+                goOn = false;
+                System.out.println("Threads terminated");
+            }
         }
-        System.out.println("Threads terminated");
     }
 }

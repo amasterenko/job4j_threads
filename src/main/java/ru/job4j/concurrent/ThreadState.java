@@ -11,6 +11,7 @@ public class ThreadState {
         first.start();
         second.start();
         while (first.getState() != Thread.State.TERMINATED || second.getState() != Thread.State.TERMINATED) {
+            int i = Math.max(1, 2);
         }
         System.out.println("Threads terminated");
     }

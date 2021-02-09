@@ -25,16 +25,16 @@ public class ParseFile {
     public synchronized String getContentWithoutUnicode() throws IOException {
         byte[] bytes = Files.readAllBytes(file.toPath());
         StringBuilder output = new StringBuilder();
-        for(byte b : bytes) {
+        for (byte b : bytes) {
             int unsignedByte = b & 0xff;
-            if ( unsignedByte < 0x80) {
+            if (unsignedByte < 0x80) {
                 output.append((char) unsignedByte);
             }
         }
         return output.toString();    }
 
     public synchronized void saveContent(String content) throws IOException {
-        try(Writer w = new FileWriter(file);
+        try (Writer w = new FileWriter(file);
         BufferedWriter bw = new BufferedWriter(w)) {
             bw.write(content);
         }

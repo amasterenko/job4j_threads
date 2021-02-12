@@ -2,19 +2,15 @@ package ru.job4j.concurrent.buffer;
 
 import ru.job4j.concurrent.wait.SimpleBlockingQueue;
 
-public class ParallelSearch {
-    static int stop = -1;
+public class ParallelSearchInterrupt {
 
     public static void main(String[] args) {
-        SimpleBlockingQueue<Integer> queue = new SimpleBlockingQueue<>(1);
+        SimpleBlockingQueue<Integer> queue = new SimpleBlockingQueue<>(2);
         final Thread consumer = new Thread(
                 () -> {
-                    while (true) {
+                    while (!Thread.currentThread().isInterrupted()) {
                         try {
                             int value = queue.poll();
-                            if (value == stop) {
-                                break;
-                            }
                             System.out.println(value);
                         } catch (InterruptedException e) {
                             e.printStackTrace();
@@ -31,7 +27,7 @@ public class ParallelSearch {
                             queue.offer(index);
                             Thread.sleep(500);
                     }
-                    queue.offer(stop);
+                    consumer.interrupt();
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }

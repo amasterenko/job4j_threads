@@ -1,6 +1,8 @@
 package ru.job4j.concurrent.cache;
 
+import java.util.Collection;
 import java.util.Map;
+import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 
 public class Cache {
@@ -24,7 +26,7 @@ public class Cache {
         memory.remove(model.getId());
     }
 
-    public Base findById(int id) {
-        return memory.get(id);
+    public Collection<Base> getContent() {
+        return memory.values();
     }
 }

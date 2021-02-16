@@ -71,8 +71,8 @@ public class UserStorageTest {
         Thread first = new Thread(() -> storage.add(u1));
         Thread second = new Thread(() -> storage.delete(u1));
         first.start();
-        second.start();
         first.join();
+        second.start();
         second.join();
         assertThat(storage.getUsers(), is(Collections.EMPTY_MAP));
     }
@@ -101,8 +101,8 @@ public class UserStorageTest {
         Thread first = new Thread(() -> storage.transfer(1, 2, 100));
         Thread second = new Thread(() -> storage.transfer(2, 1, 300));
         first.start();
-        second.start();
         first.join();
+        second.start();
         second.join();
         assertThat(storage.getUsers().get(1).getAmount(), is(300));
         assertThat(storage.getUsers().get(2).getAmount(), is(0));

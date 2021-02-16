@@ -3,13 +3,12 @@ package ru.job4j.concurrent.pool;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
-import java.util.concurrent.TimeUnit;
 
 public class EmailNotification {
-    private ExecutorService pool = Executors.newFixedThreadPool(Runtime.getRuntime().availableProcessors());
+    private final ExecutorService pool = Executors.newFixedThreadPool(Runtime.getRuntime().availableProcessors());
 
     /**
-     * Creates email's content and send an email by the ExecutorService
+     * Creates email's content and body and send the email by the ExecutorService
      * @param user User object
      * @return Future<String> - in "{the user's name}-done" format
      */

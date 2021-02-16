@@ -31,6 +31,6 @@ public class EmailNotificationTest {
             }
         });
         assertThat(resultsOfStrings, is(List.of(
-                "user1-done", "user2-done", "user3-done", "user4-done", "user5-done" )));
+                "user1-done", "user2-done", "user3-done", "user4-done", "user5-done")));
     }
 }
